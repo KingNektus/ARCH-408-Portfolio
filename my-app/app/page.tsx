@@ -1,14 +1,15 @@
-import Image from 'next/image';
-import InteractiveMap from './components/InteractiveMap';
+import SvgMapViewer from './components/SvgMapViewer';
+import A2InteractiveMap from './components/A2InteractiveMap';
 
 export default function Portfolio() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
   const projects = [
     { 
       id: 'a1', 
       title: 'A1 - Diagram', 
       color: 'bg-blue-50', 
       desc: 'Visualizing complex technical architectures and campus systems.', 
-      imgSrc: '/A1.png',
+      imgSrc: `${basePath}/A1.png`,
       scale: 0.5 // <--- Adjust this (1.0 = 100%, 0.8 = 80%, etc.)
     },
     { 
@@ -16,15 +17,15 @@ export default function Portfolio() {
       title: 'A2 - Script', 
       color: 'bg-emerald-50', 
       desc: 'Custom automation tools and Google Sheets mobile integration.', 
-      imgSrc: '/A2.png',
-      scale: 0.5
+      imgSrc: `${basePath}/A2.png`,
+      scale: 1.0
     },
     { 
       id: 'a3', 
-      title: 'A3 - Systems', 
+      title: 'A3 - Systems Thinking', 
       color: 'bg-purple-50', 
       desc: 'Interactive Tech Systems Cluster node map exploration.', 
-      imgSrc: '/compiler-visual.png',
+      imgSrc: `${basePath}/compiler-visual.png`,
       scale: 1.0
     },
     { 
@@ -32,7 +33,7 @@ export default function Portfolio() {
       title: 'A4 - Intervention', 
       color: 'bg-orange-50', 
       desc: 'Strategic campus technology audits and hardware troubleshooting.', 
-      imgSrc: '/intervention.png',
+      imgSrc: `${basePath}/A4.png`,
       scale: 0.85
     }
   ];
@@ -97,7 +98,11 @@ export default function Portfolio() {
                 >
                   {project.id === 'a3' ? (
                     <div className="h-[700px] w-full">
-                      <InteractiveMap />
+                      <SvgMapViewer />
+                    </div>
+                  ) : project.id === 'a2' ? (
+                    <div className="w-full">
+                      <A2InteractiveMap />
                     </div>
                   ) : (
                     <div className="w-full">
